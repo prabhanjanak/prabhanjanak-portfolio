@@ -68,7 +68,7 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
             <p className={`text-lg leading-relaxed mb-6 ${
               darkMode ? 'text-gray-300' : 'text-gray-700'
             }`}>
-              I'm a passionate AI/ML Engineer currently pursuing my Bachelor's in Artificial Intelligence and Machine Learning at PESITM Shivamogga. My journey in technology began with a curiosity about how machines can learn and make decisions, which has evolved into a deep expertise in creating intelligent systems that solve real-world problems.
+              I'm a passionate AI/ML Engineer recently graduated completing my Bachelor's in Artificial Intelligence and Machine Learning at PESITM Shivamogga. My journey in technology began with a curiosity about how machines can learn and make decisions, which has evolved into a deep expertise in creating intelligent systems that solve real-world problems.
             </p>
             <p className={`text-lg leading-relaxed mb-6 ${
               darkMode ? 'text-gray-300' : 'text-gray-700'
