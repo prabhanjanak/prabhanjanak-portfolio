@@ -14,10 +14,28 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
   });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-  };
+  e.preventDefault();
+
+  emailjs.send(
+    'service_ml4hpkb', // ✅ Your Service ID
+    'template_ah49fc6', // ✅ Your Template ID
+    {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    },
+    'XE5Me4OxXLxIVUjcM' // ✅ Your Public Key
+  )
+  .then(() => {
+    alert('✅ Message sent successfully!');
+    setFormData({ name: '', email: '', message: '' }); // clear form
+  })
+  .catch((error) => {
+    console.error('❌ EmailJS Error:', error);
+    alert('❌ Failed to send message. Please try again later.');
+  });
+};
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
