@@ -1,49 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 
 interface ContactProps {
   darkMode: boolean;
 }
 
 const Contact: React.FC<ContactProps> = ({ darkMode }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-
-  emailjs.send(
-    'service_ml4hpkb', // ✅ Your Service ID
-    'template_ah49fc6', // ✅ Your Template ID
-    {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    },
-    'XE5Me4OxXLxIVUjcM' // ✅ Your Public Key
-  )
-  .then(() => {
-    alert('✅ Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' }); // clear form
-  })
-  .catch((error) => {
-    console.error('❌ EmailJS Error:', error);
-    alert('❌ Failed to send message. Please try again later.');
-  });
-};
-
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   const contactInfo = [
     {
       icon: Mail,
@@ -88,21 +51,17 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            darkMode ? 'text-gray-300' : 'text-gray-700'
-          }`}>
+          <p className={`text-lg max-w-2xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             Let's collaborate on exciting AI/ML projects or discuss opportunities in technology innovation
           </p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Contact Info Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -111,9 +70,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
             className="space-y-8"
           >
             <div>
-              <h3 className={`text-2xl font-bold mb-6 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 Contact Information
               </h3>
               <div className="space-y-4">
@@ -132,14 +89,10 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                       <info.icon size={20} />
                     </div>
                     <div>
-                      <p className={`text-sm font-medium ${
-                        darkMode ? 'text-gray-400' : 'text-gray-600'
-                      }`}>
+                      <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                         {info.label}
                       </p>
-                      <p className={`font-semibold ${
-                        darkMode ? 'text-white' : 'text-gray-900'
-                      }`}>
+                      <p className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                         {info.value}
                       </p>
                     </div>
@@ -150,9 +103,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
             {/* Social Links */}
             <div>
-              <h4 className={`text-lg font-bold mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h4 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 Connect with me
               </h4>
               <div className="flex gap-4">
@@ -185,9 +136,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                   : 'bg-white/30 border-white/50'
               } shadow-lg`}
             >
-              <h4 className={`text-lg font-bold mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h4 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 Download My Resume
               </h4>
               <motion.a
@@ -202,94 +151,41 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Mail & WhatsApp Buttons */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className={`p-8 rounded-2xl backdrop-blur-md border ${
+            className={`flex flex-col items-center justify-center gap-6 p-8 rounded-2xl backdrop-blur-md border ${
               darkMode
                 ? 'bg-gray-900/30 border-gray-700/50'
                 : 'bg-white/30 border-white/50'
             } shadow-xl`}
           >
-            <h3 className={`text-2xl font-bold mb-6 ${
-              darkMode ? 'text-white' : 'text-gray-900'
-            }`}>
-              Send a Message
+            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Reach Out Instantly
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${
-                  darkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400'
-                      : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200`}
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${
-                  darkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400'
-                      : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200`}
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${
-                  darkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400'
-                      : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 resize-none`}
-                  placeholder="Your message..."
-                />
-              </div>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <Send size={20} />
-                Send Message
-              </motion.button>
-            </form>
+
+            <motion.a
+              href="mailto:prabh.bhat12@gmail.com"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full text-center flex items-center justify-center gap-2 bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Mail size={20} /> Send Email
+            </motion.a>
+
+            <motion.a
+              href="https://wa.me/918951568286"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full text-center flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Send size={20} /> WhatsApp Chat
+            </motion.a>
           </motion.div>
         </div>
       </div>
